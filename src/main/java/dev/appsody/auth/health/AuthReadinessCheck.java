@@ -1,4 +1,4 @@
-package dev.appsody.starter.health;
+package dev.appsody.auth.health;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -8,7 +8,7 @@ import org.eclipse.microprofile.health.Readiness;
 
 @Readiness
 @ApplicationScoped
-public class StarterReadinessCheck implements HealthCheck {
+public class AuthReadinessCheck implements HealthCheck {
 
     private boolean isReady() {
         // perform readiness checks, e.g. database connection, etc.

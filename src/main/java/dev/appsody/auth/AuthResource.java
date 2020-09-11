@@ -1,13 +1,13 @@
-package dev.appsody.starter;
+package dev.appsody.auth;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("/resource")
-public class StarterResource {
+public class AuthResource {
 
     @GET
     public String getRequest() {
-        return "StarterResource response";
+        return "AuthResource response";
     }
 }
