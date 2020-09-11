@@ -27,9 +27,9 @@
   	<!-- <sslDefault sslRef="defaultSSLConfig" /> -->
 
   	<ssl keyStoreRef="bcKeyStore"/>
-  	<keyStore id="bcKeyStore" location="/Users/Hemankita1/IBM/CN_Ref/auth-ms-openliberty/BCKeyStoreFile.jks" type="JKS" password="password" />  
+  	<keyStore id="bcKeyStore" location="/etc/keystorevol/BCKeyStoreFile.jks" type="JKS" password="password" />  
 
-  	<openidConnectProvider id="OP" oauthProviderRef="Oauth" signatureAlgorithm="HS256" keyStoreRef="bcKeyStore" keyAliasName="bckey" issuerIdentifier="${env.jwksIssuer}"/>
+  	<openidConnectProvider id="OP" oauthProviderRef="Oauth" signatureAlgorithm="RS256" keyStoreRef="bcKeyStore" keyAliasName="bckey" jwkEnabled="true" issuerIdentifier="${env.jwksIssuer}"/>
 
   	<oauthProvider httpsRequired="true" id="Oauth" tokenFormat="mpjwt"  >
     	<localStore>
