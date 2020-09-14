@@ -13,9 +13,13 @@
     </parent>
 
     <groupId>dev.appsody.starter.java-openliberty</groupId>
-    <artifactId>starter-app</artifactId>
+    <artifactId>auth-ms-openliberty</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    
+    <properties>
+        <jwksIssuer>https://auth:9443/oidc/endpoint/OP</jwksIssuer>
+    </properties>
 
     <dependencies>
 

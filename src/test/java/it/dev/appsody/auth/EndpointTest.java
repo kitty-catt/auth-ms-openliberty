@@ -1,4 +1,4 @@
-package it.dev.appsody.starter;
+package it.dev.appsody.auth;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 public class EndpointTest {
     
     private static String baseUrl;
-    private static final String RESOURCE_ENDPOINT = "/starter/resource";
+    private static final String RESOURCE_ENDPOINT = "/micro/resource";
     private Client client;
     private Response response;
     
@@ -41,7 +41,7 @@ public class EndpointTest {
 
     @Test
     public void testResourceEndpoint() {
-        checkEndpoint(RESOURCE_ENDPOINT, "StarterResource response");
+        checkEndpoint(RESOURCE_ENDPOINT, "AuthResource response");
 
     }
 

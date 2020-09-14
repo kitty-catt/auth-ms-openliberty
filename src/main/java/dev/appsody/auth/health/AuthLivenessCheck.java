@@ -1,4 +1,4 @@
-package dev.appsody.starter.health;
+package dev.appsody.auth.health;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -8,7 +8,7 @@ import org.eclipse.microprofile.health.Liveness;
 
 @Liveness
 @ApplicationScoped
-public class StarterLivenessCheck implements HealthCheck {
+public class AuthLivenessCheck implements HealthCheck {
 
     private boolean isAlive() {
         // perform health checks here
