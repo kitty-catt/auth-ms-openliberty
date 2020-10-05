@@ -101,10 +101,10 @@ cd auth-ms-openliberty
 - Before running the application, make sure you create a local instance of a Keystore by running the commands below.
 
 ```
-    keytool -genkeypair -dname "cn=bc.ibm.com, o=User, ou=IBM, c=US" -alias bckey -keyalg RSA -keysize 2048 -keypass password -storetype JKS -keystore ./BCKeyStoreFile.jks -storepass password -validity 3650
-    keytool -list -keystore ./BCKeyStoreFile.jks -storepass password
-    keytool -export -alias bckey -file client.cer -keystore ./BCKeyStoreFile.jks -storepass password
-    keytool -import -v -trustcacerts -alias bckey -file client.cer -keystore ./truststore.jks -storepass password -noprompt
+    keytool -genkeypair -dname "cn=bc.ibm.com, o=User, ou=IBM, c=US" -alias bckey -keyalg RSA -keysize 2048 -keypass password -storetype PKCS12 -keystore ./BCKeyStoreFile.p12 -storepass password -validity 3650
+    keytool -list -keystore ./BCKeyStoreFile.p12 -storepass password
+    keytool -export -alias bckey -file client.cer -keystore ./BCKeyStoreFile.p12 -storepass password
+    keytool -import -v -trustcacerts -alias bckey -file client.cer -keystore ./truststore.p12 -storepass password -noprompt
 ```
 
 Replace the location of the bcKeyStore in the [server.xml](./src/main/liberty/config/server.xml) as follows.
