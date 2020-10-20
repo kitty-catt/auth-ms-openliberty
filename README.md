@@ -11,6 +11,7 @@ https://cloudnativereference.dev/*
 * [Implementation Details](#implementation-details)
 * [Running the application on Docker](#running-the-application-on-docker)
     + [Get the Auth application](#get-the-auth-application)
+    + [Set up custom keystore](#set-up-custom-keystore)
     + [Run the Auth application](#run-the-auth-application)
     + [Validating the application](#validating-the-application)
     + [Exiting the application](#exiting-the-application)
@@ -96,9 +97,9 @@ git clone https://github.com/ibm-garage-ref-storefront/auth-ms-openliberty.git
 cd auth-ms-openliberty
 ```
 
-### Run the Auth application
+### Set up custom keystore
 
-- Before running the application, make sure you create a local instance of a Keystore by running the commands below.
+- Create a local instance of a Keystore by running the commands below.
 
 ```
     keytool -genkeypair -dname "cn=bc.ibm.com, o=User, ou=IBM, c=US" -alias bckey -keyalg RSA -keysize 2048 -keypass password -storetype PKCS12 -keystore ./BCKeyStoreFile.p12 -storepass password -validity 3650
@@ -107,11 +108,11 @@ cd auth-ms-openliberty
     keytool -import -v -trustcacerts -alias bckey -file client.cer -keystore ./truststore.p12 -storepass password -noprompt
 ```
 
-Replace the location of the bcKeyStore in the [server.xml](./src/main/liberty/config/server.xml) as follows.
+- Go to `src/main/liberty/config/resources/security` and copy `BCKeyStoreFile.p12` to this location.
 
-```
-  <keyStore id="bcKeyStore" location="<JKS file location path>" type="JKS" password="password" />
-```
+- `client.cer` and `truststore.p12` will not be used in this particualr microservice. These will be needed by other storefront microservices like [orders](https://github.com/ibm-garage-ref-storefront/orders-ms-openliberty) and [customer](https://github.com/ibm-garage-ref-storefront/customer-ms-openliberty)
+
+### Run the Auth application
 
 - To run the auth application, use the below command.
 

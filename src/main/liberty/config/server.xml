@@ -10,26 +10,32 @@
     <!-- Automatically expand WAR files and EAR files -->
   	<applicationManager autoExpand="true"/>
 
-    <webApplication location="auth-ms-openliberty.war" contextRoot="/"/>
+    <webApplication location="auth-ms-openliberty.war" contextRoot="/">
+    	<application-bnd>
+              <security-role name="admin">
+		        <group name="Admins" />
+		      </security-role>
+		      <security-role name="user">
+		        <group name="Users" />
+		      </security-role>
+        </application-bnd>
+    </webApplication>
 
     <basicRegistry id="basic">
-        <user name="foo" password="bar" />
-        <user name="user" password="password"/>
-        <group name="Admins">
-          <member name="user" />
+       <user name="foo" password="bar" />
+       <user name="user" password="password"/>
+       <group name="Admins">
+         <member name="user" />
        </group>
        <group name="Users">
-          <member name="foo" />
+         <member name="foo" />
        </group>
   	</basicRegistry>
 
-  	<!--keyStore id="defaultKeyStore" password="keypass" /-->
-  	<!-- <sslDefault sslRef="defaultSSLConfig" /> -->
-
   	<ssl keyStoreRef="bcKeyStore"/>
-  	<keyStore id="bcKeyStore" location="/etc/keystorevol/BCKeyStoreFile.jks" type="JKS" password="password" />  
+  	<keyStore id="bcKeyStore" location="${server.config.dir}/resources/security/BCKeyStoreFile.p12" password="password" />  
 
-  	<openidConnectProvider id="OP" oauthProviderRef="Oauth" signatureAlgorithm="RS256" keyStoreRef="bcKeyStore" keyAliasName="bckey" jwkEnabled="true" issuerIdentifier="${env.jwksIssuer}"/>
+  	<openidConnectProvider id="OP" oauthProviderRef="Oauth" signatureAlgorithm="RS256" keyStoreRef="bcKeyStore" keyAliasName="bckey" issuerIdentifier="${env.jwksIssuer}" httpsRequired="true"/>
 
   	<oauthProvider httpsRequired="true" id="Oauth" tokenFormat="mpjwt"  >
     	<localStore>
