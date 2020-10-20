@@ -18,7 +18,7 @@
     <packaging>war</packaging>
     
     <properties>
-        <jwksIssuer>https://auth:9443/oidc/endpoint/OP</jwksIssuer>
+        <jwksIssuer>https://localhost:9443/oidc/endpoint/OP</jwksIssuer>
     </properties>
 
     <dependencies>
